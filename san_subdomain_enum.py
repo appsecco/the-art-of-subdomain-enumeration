@@ -25,6 +25,7 @@ def get_domain_name():
 def get_cert(domain_name):
     cert = ssl.get_server_certificate((domain_name, 443))
     return cert
+
 def get_san(cert):
     x509 = openssl.crypto.load_certificate(openssl.crypto.FILETYPE_PEM, cert)
     domain_list = []
