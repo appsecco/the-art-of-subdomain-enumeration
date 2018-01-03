@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Script by Hanno Bock - https://github.com/hannob/tlshelpers/blob/master/getsubdomain
+
 query="SELECT ci.NAME_VALUE NAME_VALUE FROM certificate_identity ci WHERE ci.NAME_TYPE = 'dNSName' AND reverse(lower(ci.NAME_VALUE)) LIKE reverse(lower('%.$1'));"
 
 echo $query | \
