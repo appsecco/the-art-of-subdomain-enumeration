@@ -1,7 +1,7 @@
 ## The art of sub-domain enumeration
 
 - This repository contains all the supplement material for the book "The art of sub-domain enumeration"
-- The book is available here: 
+- The book is available here: https://appsecco.com/books/subdomain-enumeration/
 
 1. `censys_subdomain_enum.py` - Extract sub-domains for a given domain using Censys.io API
 2. `cheatsheet.pdf` - cheat sheet for the sub-domain enumeration techniques
