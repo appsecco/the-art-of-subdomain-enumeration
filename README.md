@@ -14,8 +14,4 @@
 
 ### Feedback/Suggestions
 
-<<<<<<< HEAD
 [@yamakira](https://twitter.com/yamakira_)
-=======
-[@yamakira](https://twitter.com/yamakira_)
->>>>>>> a4421c8ba80f897631accc0d902bfea88219f095
