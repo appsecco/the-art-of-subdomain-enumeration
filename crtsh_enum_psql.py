@@ -8,8 +8,15 @@ try:
 except ImportError:
     raise ImportError('\n\033[33mpsycopg2 library missing. pip install psycopg2\033[1;m\n')
     sys.exit(1)
+try:
+    import click
+except ImportError:
+    raise ImportError('\n\033[33mpsycopg2 library missing. pip install click\033[1;m\n')
+    sys.exit(1)
 import re
 import sys
+import json
+from socket import gethostbyname, gaierror
 
 DB_HOST = 'crt.sh'
 DB_NAME = 'certwatch'
@@ -45,8 +52,45 @@ def get_domain_name():
     else:
         return sys.argv[1]
 
-if __name__ == '__main__':
-    domain_name = get_domain_name()
+def do_dns_resolution(unique_domains):
+    dns_resolution_results = {}
+    for domain in set(unique_domains):
+        domain = domain.replace('*.','')
+        try:
+            ip_address = gethostbyname(domain)
+            dns_resolution_results[domain] = ip_address
+            #print("\033[92m{0:<50} - {1:20}\033[1;m".format(domain,ip_address.rstrip("\n\r")))
+        except gaierror as e:
+            #print("\033[93m{0:<50} - {1:20}\033[1;m".format(domain,"No A record exists",end=''))
+            dns_resolution_results[domain] = "No A record exists"
+            #print(e.message)
+    return dns_resolution_results
+
+@click.command()
+@click.argument('domain')
+@click.option('--resolve/--no-resolve','-r', default=False,
+                help='Enable/Disable DNS resolution')
+@click.option('--output','-o',
+                help='Output in JSON format')
+def main(domain, resolve, output):
+    domain_name = domain
     cursor = connect_to_db(domain_name)
     unique_domains = get_unique_domains(cursor, domain_name)
-    print_unique_domains(unique_domains)
+    if resolve == False:
+        for domain in unique_domains:
+            print(domain)
+        sys.exit()
+    else:
+        dns_resolution_results = do_dns_resolution(unique_domains)
+
+    if output=='json':
+        print(json.dumps(dns_resolution_results))
+    else:
+        for domain,ip_address in dns_resolution_results.iteritems():
+            if ip_address == "No A record exists":
+                print("\033[93m{0:<50} - {1:20}\033[1;m".format(domain,ip_address.rstrip("\n\r")))
+            else:
+                print("\033[92m{0:<50} - {1:20}\033[1;m".format(domain,ip_address.rstrip("\n\r")))
+
+if __name__ == '__main__':
+    main()
