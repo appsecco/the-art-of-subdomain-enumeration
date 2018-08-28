@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+
+[packages]
+requests = "==2.18.4"
+"asn1crypto" = "==0.24.0"
+cffi = "==1.11.2"
+cryptography = "==2.1.4"
+"enum34" = "==1.1.6"
+idna = "==2.6"
+ipaddress = "==1.0.19"
+pycparser = "==2.18"
+six = "==1.11.0"
+censys = "==0.0.8"
+"psycopg2" = "==2.7.3.2"
+"beautifulsoup4" = "*"
+pyOpenSSL = "==17.5.0"
+asyncpg = "*"
+
+[requires]
+python_version = "2.7"
