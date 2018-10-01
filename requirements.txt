@@ -9,5 +9,5 @@ pycparser==2.18
 pyOpenSSL==17.5.0
 six==1.11.0
 censys==0.0.8
-psycopg2==2.7.3.2
+psycopg2
 beautifulsoup4
