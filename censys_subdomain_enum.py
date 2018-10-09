@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # A script to extract domain names from related SSL/TLS certificates using Censys
 # You'll need Censys API ID and API Secret to be able to extract SSL/TLS certificates
 # Needs censys module to run. pip install censys.
