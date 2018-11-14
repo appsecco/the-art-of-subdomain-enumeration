@@ -37,5 +37,8 @@ def print_results(search_results):
 
 if __name__ == '__main__':
     domain_name, limit = get_domain()
+    if limit > 40:
+      print("Limit cannot be over 40.")
+      sys.exit(1)
     search_results = check_virustotal(domain_name, limit)
     print_results(search_results)
