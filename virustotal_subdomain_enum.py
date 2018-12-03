@@ -18,7 +18,7 @@ def get_domain():
         print("\n\033[33mUsage: python virustotal_enum.py <domain> <num_of_subdomains>\033[1;m\n")
         sys.exit(1)
     else:
-        return sys.argv[1], sys.argv[2]
+        return sys.argv[1], int(sys.argv[2])
 
 def check_virustotal(domain_name, limit):
     url = "https://www.virustotal.com/ui/domains/{0}/subdomains?limit={1}".format(domain_name, limit)
