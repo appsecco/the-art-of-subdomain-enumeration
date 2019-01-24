@@ -13,7 +13,7 @@ logging.basicConfig(
     format="%(message)s"
     )
 
-__author__  = "Bharath(github.com/yamakira)"
+__author__  = "Bharath(github.com/0xbharath)"
 __version__ = "0.1"
 __purpose__ = "Extract subdomains for a domain from censys certificate dataset"
 
